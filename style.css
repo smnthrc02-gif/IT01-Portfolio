@@ -1,0 +1,300 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: #f5f0e6;
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #6d4c41;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #f5f0e6;
+}
+
+/* Full-page sections */
+.page {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 40px; /* added space because nav is fixed */
+    text-align: center;
+    position: relative;
+
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s forwards;
+}
+
+/* Animation delay */
+.page:nth-of-type(1) { animation-delay: 0.2s; }
+.page:nth-of-type(2) { animation-delay: 0.4s; }
+.page:nth-of-type(3) { animation-delay: 0.6s; }
+.page:nth-of-type(4) { animation-delay: 0.8s; }
+.page:nth-of-type(5) { animation-delay: 1s; }
+.page:nth-of-type(6) { animation-delay: 1.2s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Vintage brown palette */
+.home { background-color: #f5f0e6; color: #4b2e2e; }
+.about { background-color: #e8dccb; color: #3e2723; }
+.objectives { background-color: #d7c2ad; color: #3e2723; }
+.skills { background-color: #c8ad94; color: #2f1b12; }
+.blog { background-color: #bfa189; color: #2f1b12; }
+.contact { background-color: #a1887f; color: #ffffff; }
+
+/* Headings */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #6d4c41;
+    margin: 10px auto;
+    transition: width 0.5s ease;
+}
+
+h1:hover::after { width: 100px; }
+
+/* Lists */
+ul { list-style-type: none; margin-top: 10px; }
+li { margin: 8px 0; }
+
+/* Images */
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid #6d4c41;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(0.8);
+    animation: popIn 1s forwards;
+    animation-delay: 0.5s;
+}
+
+.project-pic {
+    width: 320px;
+    border-radius: 12px;
+    border: 4px solid #6d4c41;
+    margin-top: 20px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(0.8);
+    animation: popIn 1s forwards;
+    animation-delay: 0.7s;
+}
+
+@keyframes popIn {
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* 🌸 Vintage flowers in corners */
+/* Using your correct file: flower.jpeg */
+.page::before,
+.page::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url('flower.jpeg'); /* FIXED */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    animation: floatFlower 6s ease-in-out infinite;
+}
+
+.page::before {
+    top: 10px;
+    left: 10px;
+}
+
+.page::after {
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Floating animation */
+@keyframes floatFlower {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Extra flower image if used */
+.flower-image {
+    width: 150px;
+    margin: 20px 0;
+}
+
+/* ==========================
+   Scroll-triggered animations
+   ========================== */
+.page {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.page.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Slide from left/right for variety */
+.page.slide-left {
+    transform: translateX(-40px);
+}
+
+.page.slide-right {
+    transform: translateX(40px);
+}
+
+.page.slide-left.visible,
+.page.slide-right.visible {
+    transform: translateX(0);
+}
+
+/* ==========================
+   Typing animation for Home header
+   ========================== */
+#home h1 {
+    overflow: hidden;
+    border-right: 3px solid #6d4c41;
+    white-space: nowrap;
+    font-family: 'Parisienne', cursive;
+    animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* ==========================
+   Image pop-in effect
+   ========================== */
+.profile-pic, .project-pic {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: popIn 1s forwards;
+}
+
+.profile-pic { animation-delay: 0.5s; }
+.project-pic { animation-delay: 0.7s; }
+
+@keyframes popIn {
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================
+   Hover effects
+   ========================== */
+nav a {
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: #f5e1da;
+    transform: scale(1.1);
+}
+
+.profile-pic:hover, .project-pic:hover {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ==========================
+   Optional: floating flowers
+   ========================== */
+.page::before, .page::after {
+    animation: floatFlower 6s ease-in-out infinite, rotateFlower 20s linear infinite;
+}
+
+@keyframes floatFlower {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes rotateFlower {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Base fade-in for all sections */
+.page {
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+
+/* Fade Up */
+.fade-up {
+    transform: translateY(40px);
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade Left */
+.fade-left {
+    transform: translateX(-40px);
+}
+
+.fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fade Right */
+.fade-right {
+    transform: translateX(40px);
+}
+
+.fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}

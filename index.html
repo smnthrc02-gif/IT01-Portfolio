@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IT01 Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(to bottom, #fdf6f0, #f7e7d3);
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            text-align: center;
+            padding: 15px;
+            background-color: #e8cfc1;
+            position: sticky;
+            top: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #5a3e36;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #a26769;
+        }
+
+        .page {
+            padding: 60px 20px;
+            min-height: 100vh;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s ease;
+        }
+
+        .page.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-family: 'Parisienne', cursive;
+            font-size: 50px;
+            color: #8b5e3c;
+        }
+
+        h2 {
+            color: #5a3e36;
+        }
+
+        p, li {
+            color: #4b3832;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .profile-pic {
+            width: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #e8cfc1;
+        }
+
+        .project-pic {
+            width: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION MENU -->
+<nav>
+    <a href="#home">Home</a> |
+    <a href="#about">About</a> |
+    <a href="#objectives">Objectives</a> |
+    <a href="#skills">Skills</a> |
+    <a href="#blog">Blog</a> |
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- HOME PAGE -->
+<section id="home" class="page">
+    <img src="profile.pic.jpeg" alt="Profile Picture" class="profile-pic">
+    <h1>Home</h1>
+    <p>Hello! I’m Samantha Erica, a student exploring web development and creative projects.</p>
+    <p>I enjoy learning new technologies, designing simple websites, and experimenting with digital creativity.</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+    <h1>About Me</h1>
+    <p>I’m passionate about learning and creating. I love exploring web development and digital projects.</p>
+</section>
+
+<!-- OBJECTIVES -->
+<section id="objectives" class="page">
+    <h1>Project Objectives</h1>
+    <ul>
+        <li>Understand HTML & CSS structure</li>
+        <li>Create visually appealing pages</li>
+        <li>Practice layout, colors, and typography</li>
+    </ul>
+    <img src="project1.jpeg" alt="Project Screenshot" class="project-pic">
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="page">
+    <h1>Skills Learned</h1>
+    <ul>
+        <li>HTML fundamentals</li>
+        <li>CSS styling</li>
+        <li>Website organization</li>
+    </ul>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="page">
+    <h1>Blog</h1>
+    <h2>My Journey in BSIT</h2>
+    <p>Studying BSIT has been an exciting and challenging journey.</p>
+    <p>Every project helps me grow and improve my skills.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="page">
+    <h1>Contact</h1>
+    <p>Email: smnthrc02@email.com</p>
+    <p>Section: OLCA122M021</p>
+</section>
+
+<script>
+const pages = document.querySelectorAll(".page");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.2 });
+
+pages.forEach(page => observer.observe(page));
+</script>
+
+</body>
+</html>
